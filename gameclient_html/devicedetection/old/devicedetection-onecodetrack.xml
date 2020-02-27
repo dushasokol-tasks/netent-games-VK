@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+    <detectionversion>
+		<major>4</major>
+		<minor>5</minor>
+		<patch>0</patch>
+    </detectionversion>
+	
+	<!-- This is the platform specifics if unknown device, will be used if none of the platforms below these are matched -->
+	<minimumRequirements>
+		<unknownPlatform>
+			<name>Unknown Platform</name>
+				<identifiers>
+					<regExp></regExp>
+					<validatorFuncIDs></validatorFuncIDs>
+				</identifiers>
+				<dialog>
+					<dialogID>unknownPlatform</dialogID>
+					<inserts>
+						<insert> <!-- every insert is a span in the dialogue -->
+							<stringID>MGdeviceNoSupport</stringID>
+						</insert>
+						<insert> <!-- every insert is a span in the dialogue -->
+							<stringID>optimisedForVersion</stringID>
+						</insert>
+						<insert> 
+							<texts>
+								<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+								<textSlot>Safari</textSlot>
+								<textSlot>iOS 9.0+,</textSlot>
+							</texts>
+						</insert>
+						<insert>
+							<texts>
+								<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+								<textSlot>Chrome 40+</textSlot>
+								<textSlot>Android 4.1+</textSlot>
+							</texts>
+						</insert>
+                        <insert>
+                            <texts>
+                                <!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+                                <textSlot>IE10</textSlot>
+                                <textSlot>Windows Phone 8</textSlot>
+                            </texts>
+                        </insert>
+					</inserts>
+					<!-- Optional hard coded message, shall NOT be used as default fallback, but rather to be able to show a custom dialog if need arises, will override the localised texts -->
+					<!--
+					<hardMessage>
+						<text>Unfortunately, this device is not supported.</text>
+						<text>The game is optimized for Chrome 40+ on android 4.1+.</text>
+						<text>Please upgrade your device.</text>
+					</hardMessage> 
+					-->
+					<buttons>home</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+				</dialog>
+				<behavior>2</behavior>
+				<versions> <!-- needed? -->
+				</versions>
+		</unknownPlatform>
+	</minimumRequirements>
+    <platforms>
+
+		<platform>
+			<name>Android Black</name>
+			<identifiers>
+				<regExp>Android\s*\d+\.\d</regExp>
+				<validatorFuncIDs></validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>androidBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceUpdateOS</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>deviceOptimizedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 40+</textSlot>
+							<textSlot>Android</textSlot>
+							<textSlot>4.1+</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<!-- Optional hard coded message, shall NOT be used as default fallback, but rather to be able to show a custom dialog if need arises, will override the localised texts -->
+				<!--
+				<hardMessage>
+					<text>Unfortunately, this device is not supported.</text>
+					<text>The game is optimized for Chrome 40+ on android 4.1+.</text>
+					<text>Please upgrade your device.</text>
+				</hardMessage> 
+				-->
+				<buttons>home</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Android Stock Gray (4.1+)</name>
+			<identifiers>
+				<regExp>Android\s*\d+\.\d</regExp>
+				<validatorFuncIDs>checkOSMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>1</behavior>
+			<dialog>
+				<dialogID>androidStock</dialogID>
+				<inserts>
+                    <insert>
+                        <stringID>deviceUpdateBrowser</stringID>
+                        <texts></texts>
+                    </insert>
+					<insert>
+						<stringID>gameOptimisedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 40+</textSlot>
+							<textSlot>Android 4.1+</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>MGcontinueYesNo</stringID>
+						<texts></texts>
+					</insert>
+				</inserts>
+				<buttons>no,yes</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<os>
+					<versionRegExp>Android\s*(\d+\.\d+)</versionRegExp>
+					<minimum>4.1</minimum>
+					<optimal>4.1</optimal>
+				</os>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Android Chrome Black</name>
+			<identifiers>
+				<regExp>Android\s*\d+.\d+.*Chrome\/\d+\.\d+</regExp>
+				<validatorFuncIDs>checkOSOptimal,checkBrowserOptimalIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>androidChromeBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceBrowserUpdateMust</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 40+.</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>upgradeIn</stringID>
+						<texts>
+							<textSlot>Chrome</textSlot>
+							<textSlot>Play Store</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons>home</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>29</minimum>
+					<optimal>29</optimal>
+				</browser>
+				<os>
+					<versionRegExp>Android\s*(\d+.\d+)</versionRegExp>
+					<optimal>4.1</optimal>
+					<minimum></minimum>
+				</os>
+			</versions>
+		</platform>
+
+		<!-- Gray lists all browsers on iOS 8+ -->
+		<platform>
+			<name>iOS Gray list</name>
+			<identifiers>
+				<regExp>(?:(iPad|iPhone).*OS\s*\d+_\d+(?:_\d+)?)</regExp>
+				<validatorFuncIDs>checkOSMinimum</validatorFuncIDs>
+			</identifiers>
+			<dialog>
+				<dialogID>iOSGray</dialogID>
+				<inserts>
+					<insert>
+						<stringID>gameOptimisedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Safari</textSlot>
+							<textSlot>iOS 9.0+</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>MGcontinueYesNo</stringID>
+						<texts></texts>
+					</insert>
+				</inserts>
+				<buttons>no,yes</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<behavior>1</behavior>
+			<versions> <!-- needed? -->
+				<os>
+					<versionRegExp>OS\s*(\d+_\d+)</versionRegExp>
+					<minimum>8</minimum>
+					<optimal>8</optimal>
+				</os>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>iOS Black</name>
+			<identifiers>
+				<regExp>(?:(iPad|iPhone).*OS\s*\d+_\d+(?:_\d+)?)</regExp>
+				<validatorFuncIDs>checkOSMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>iOSBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>MGnoOSSupport</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>gameOptimisedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Safari</textSlot>
+							<textSlot>iOS 9.0+</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons>home</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<os>
+					<versionRegExp>OS\s*(\d+_\d+)</versionRegExp>
+					<minimum>8</minimum>
+					<optimal>8</optimal>
+				</os>
+			</versions>
+		</platform>
+
+		<!-- White lists Safari on iOS 9+ -->
+		<platform>
+			<name>iOS White</name>
+			<identifiers>
+				<regExp>\((iPad|iPhone).*\) Version\/</regExp>
+				<validatorFuncIDs>checkOSMinimum</validatorFuncIDs>
+			</identifiers>
+			<dialog>
+				<inserts></inserts>
+				<hardMessage></hardMessage>
+				<texts></texts>
+				<buttons></buttons>
+			</dialog>
+			<behavior>0</behavior>
+			<versions> <!-- needed? -->
+				<os>
+					<versionRegExp>OS\s*(\d+_\d+)</versionRegExp>
+					<minimum>9</minimum>
+					<optimal>9</optimal>
+				</os>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Android (4.1+) Chrome (40+)</name>
+			<identifiers>
+				<regExp>(?:Android\s*\d+\.\d+)(?:.*Chrome\/\d+\.\d+)</regExp>
+				<validatorFuncIDs>checkBrowserOptimal,checkOSOptimal</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<inserts></inserts> 
+				<hardMessage></hardMessage>
+				<texts></texts>
+				<buttons></buttons>
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>29</minimum>
+					<optimal>40</optimal>
+				</browser>
+				<os>
+					<versionRegExp>Android\s*(\d+.\d+)</versionRegExp>
+					<minimum>2.3</minimum>
+					<optimal>4.1</optimal>
+				</os>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Samsung S4 Stock Android (4.3+) Chrome (28)</name>
+			<identifiers>
+				<regExp>(?:Android\s*4\.\d+)(?:.*Chrome\/28\.\d+)</regExp>
+				<validatorFuncIDs>checkOSMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>1</behavior>
+			<dialog>
+				<dialogID>samsungS4Stock</dialogID>
+				<inserts>
+                    <insert>
+                        <stringID>deviceUpdateBrowser</stringID>
+                        <texts></texts>
+                    </insert>
+					<insert>
+						<stringID>deviceOptimizedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 40+</textSlot>
+							<textSlot>Android</textSlot>
+							<textSlot>4.1+</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>MGcontinueYesNo</stringID>
+						<texts></texts>
+					</insert>
+				</inserts>
+				<buttons>no,yes</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<os>
+					<versionRegExp>Android\s*(\d+.\d+)</versionRegExp>
+					<minimum>4.3</minimum>
+					<optimal>4.3</optimal>
+				</os>
+			</versions>
+		</platform>
+
+		<platform>
+            <name>Windows Phone Internet Explorer Black</name>
+            <identifiers>
+                <regExp>(?:Windows Phone)</regExp>
+                <validatorFuncIDs></validatorFuncIDs>
+            </identifiers>
+            <dialog>
+                <dialogID>windowsPhoneIEBlack</dialogID>
+                <inserts>
+                    <insert>
+                        <stringID>deviceBrowserUpdateMust</stringID>
+                        <texts></texts>
+                    </insert>
+                    <insert>
+                        <stringID>deviceOptimizedFor</stringID>
+                        <texts>
+                            <!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+                            <textSlot>IE 10+</textSlot>
+                            <textSlot>Windows Phone</textSlot>
+                            <textSlot>8+</textSlot>
+                        </texts>
+                    </insert>
+                </inserts>
+                <hardMessage></hardMessage>
+                <buttons>home</buttons>
+            </dialog>
+            <behavior>2</behavior>
+            <versions>
+            </versions>
+        </platform>
+		
+		<platform>
+			<name>Windows Phone 8 IE Mobile 10</name>
+			<identifiers>
+				<regExp>Windows Phone \d+\.\d+.*IEMobile\/\d+\.\d+</regExp>
+				<validatorFuncIDs>checkOSOptimal,checkBrowserOptimal</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+            <dialog>
+                <inserts></inserts>
+                <hardMessage></hardMessage>
+                <texts></texts>
+                <buttons></buttons>
+            </dialog>
+            <versions>
+                <browser>
+                    <versionRegExp>IEMobile\/(\d+\.\d+)</versionRegExp>
+                    <minimum>10.0</minimum>
+                    <optimal>10.0</optimal>
+                </browser>
+                <os>
+                    <versionRegExp>Windows Phone (\d+\.\d+)</versionRegExp>
+                    <optimal>8.0</optimal>
+                    <minimum>8.0</minimum>
+                </os>
+            </versions>
+		</platform>
+
+		<platform>
+			<name>Windows Phone 10 Chrome/Edge</name>
+			<identifiers>
+				<regExp>Windows Phone \d+\.\d+.*Chrome\/\d+\.\d+</regExp>
+				<validatorFuncIDs>checkOSOptimal,checkBrowserOptimal</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<inserts></inserts>
+				<hardMessage></hardMessage>
+				<texts></texts>
+				<buttons></buttons>
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>39.0</minimum>
+					<optimal>39.0</optimal>
+				</browser>
+				<os>
+					<versionRegExp>Windows Phone (\d+\.\d+)</versionRegExp>
+					<optimal>10.0</optimal>
+					<minimum>10.0</minimum>
+				</os>
+			</versions>
+		</platform>
+
+        <platform>
+            <name>Desktop Black (Unknown)</name>
+            <identifiers>
+                <regExp>(?:Windows NT)|(?:Macintosh)</regExp>
+                <validatorFuncIDs></validatorFuncIDs>
+            </identifiers>
+            <behavior>2</behavior>
+            <dialog>
+                <dialogID>desktopBlackBrowser</dialogID>
+                <inserts>
+                    <insert>
+                    <stringID>deviceUseBrowser</stringID>
+                    <texts>
+                        <textSlot>Chrome</textSlot>
+                    </texts>
+                </insert>
+                    <insert>
+                        <stringID>optimisedForVersion</stringID>
+                        <texts>
+                            <!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+                            <textSlot>Chrome 37+.</textSlot>
+                        </texts>
+                    </insert>
+                </inserts>
+                <buttons></buttons>
+            </dialog>
+            <versions>
+                <minimum></minimum>
+                <optimal></optimal>
+            </versions>
+        </platform>
+
+        <platform>
+            <name>Windows Tablet</name>
+            <identifiers>
+                <regExp>Windows NT \d+.\d+.*rv\:\d+.\d+</regExp>
+                <validatorFuncIDs>checkOSOptimal,checkBrowserOptimal</validatorFuncIDs>
+            </identifiers>
+            <behavior>0</behavior>
+            <dialog>
+                <inserts></inserts>
+                <hardMessage></hardMessage>
+                <texts></texts>
+                <buttons></buttons>
+            </dialog>
+            <versions>
+                <browser>
+                    <versionRegExp>rv\:(\d+.\d+)</versionRegExp>
+                    <minimum>10.0</minimum>
+                    <optimal>10.0</optimal>
+                </browser>
+                <os>
+                    <versionRegExp>Windows NT (\d+.\d+)</versionRegExp>
+                    <optimal>6.3</optimal>
+                    <minimum>6.2</minimum>
+                </os>
+            </versions>
+        </platform>
+		
+		<platform>
+			<name>Desktop Internet Explorer Black (IE less than 10)</name>
+			<identifiers>
+				<regExp>(?:.*MSIE\s([\d.]+))(?:.*Windows NT)</regExp>
+				<validatorFuncIDs>checkBrowserMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>desktopIEBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceBrowserUpdateMust</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Internet Explorer 11+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>MSIE\s([\d.]+)</versionRegExp>
+					<minimum>10</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Internet Explorer Gray (IE 10)</name>
+			<identifiers>
+				<regExp>(?:.*MSIE\s([\d.]+))(?:.*Windows NT)</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>1</behavior>
+			<dialog>
+				<dialogID>desktopIEGray</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceUpdateBrowser</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Internet Explorer 11+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons>ok</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>MSIE\s([\d.]+)</versionRegExp>
+					<minimum>10</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Internet Explorer White (IE 11)</name>
+			<identifiers>
+				<regExp>(?:.*Windows NT)(?:.*Trident\/([\d.]+))(?:.*rv\:([\d.]+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<dialogID></dialogID>
+				<inserts></inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>rv\:([\d.]+)</versionRegExp>
+					<minimum>11</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Chrome Black</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Chrome\/(\d+\.\d+))|(?:Macintosh)(?:.*Chrome\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>desktopChromeBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceBrowserUpdateMust</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 37+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>36</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Desktop Chrome Gray</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Chrome\/(\d+\.\d+))|(?:Macintosh)(?:.*Chrome\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>1</behavior>
+			<dialog>
+				<dialogID>desktopChromeGray</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceUpdateBrowser</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 37+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons>ok</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>36</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Desktop Chrome White (37+)</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Chrome\/(\d+\.\d+))|(?:Macintosh)(?:.*Chrome\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<dialogID></dialogID>
+				<inserts></inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Chrome\/(\d+\.\d+)</versionRegExp>
+					<minimum>37</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Desktop Firefox Black</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Firefox\/(\d+\.\d+))|(?:Macintosh)(?:.*Firefox\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>desktopFirefoxBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceBrowserUpdateMust</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Firefox 32+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Firefox\/(\d+\.\d+)</versionRegExp>
+					<minimum>31</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Desktop Firefox Gray</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Firefox\/(\d+\.\d+))|(?:Macintosh)(?:.*Firefox\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>1</behavior>
+			<dialog>
+				<dialogID>desktopFirefoxGray</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceUpdateBrowser</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Firefox 32+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons>ok</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Firefox\/(\d+\.\d+)</versionRegExp>
+					<minimum>31</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Desktop Firefox White (32+)</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Firefox\/(\d+\.\d+))|(?:Macintosh)(?:.*Firefox\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<dialogID></dialogID>
+				<inserts></inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Firefox\/(\d+\.\d+)</versionRegExp>
+					<minimum>32</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Safari Black on MacOS or Windows (6 or less)</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Version\/(\d+\.\d+))|(?:Macintosh)(?:.*Version\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>desktopSafariBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceBrowserUpdateMust</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Safari 7+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Version\/(\d+\.\d+)</versionRegExp>
+					<minimum>7</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Safari Black Windows</name>
+			<identifiers>
+				<regExp>(?:Windows NT)(?:.*Version\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimumIsLess</validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>desktopWindowsSafariBlack</dialogID>
+				<inserts>
+					<insert>
+						<stringID>deviceUseBrowser</stringID>
+						<texts>
+							<textSlot>Chrome</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>optimisedForVersion</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 37+.</textSlot>
+						</texts>
+					</insert>
+				</inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Version\/(\d+\.\d+)</versionRegExp>
+					<minimum>7</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+		
+		<platform>
+			<name>Desktop Safari White on Mac OS (7+)</name>
+			<identifiers>
+				<regExp>(?:Macintosh)(?:.*Version\/(\d+\.\d+))</regExp>
+				<validatorFuncIDs>checkBrowserMinimum</validatorFuncIDs>
+			</identifiers>
+			<behavior>0</behavior>
+			<dialog>
+				<dialogID></dialogID>
+				<inserts></inserts>
+				<buttons></buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+				<browser>
+					<versionRegExp>Version\/(\d+\.\d+)</versionRegExp>
+					<minimum>7</minimum>
+					<optimal></optimal>
+				</browser>
+			</versions>
+		</platform>
+
+		<platform>
+			<name>Android (3.0)</name> <!-- necessary, as we want to show optimal Android blacklist message -->
+			<identifiers>
+				<regExp>(?:Android\s*3\.\d+)</regExp>
+				<validatorFuncIDs></validatorFuncIDs>
+			</identifiers>
+			<behavior>2</behavior>
+			<dialog>
+				<dialogID>android3Black</dialogID>
+				<inserts>
+					<insert>
+						<stringID>MGnoOSSupport</stringID>
+						<texts></texts>
+					</insert>
+					<insert>
+						<stringID>gameOptimisedFor</stringID>
+						<texts>
+							<!-- Slot (to insert) for each placeholder (e.g {0}, {1} etc. in a localised string) -->
+							<textSlot>Chrome 40+</textSlot>
+							<textSlot>Android 4.1+</textSlot>
+						</texts>
+					</insert>
+					<insert>
+						<stringID>upgradeDevice</stringID>
+						<texts></texts>
+					</insert>
+				</inserts>
+				<buttons>home</buttons> <!-- predefined button ids (home, yes, no, reload, ok) -->
+			</dialog>
+			<versions>
+			</versions>
+		</platform>
+	</platforms>
+
+	<deviceScreenSpecifications>
+		<deviceSpecification model="iPhone 4" width="320" height="480" devicePixelRatio="2" portraitViewportWidth="1280" portraitViewportHeight="1762" landscapeViewportWidth="1920" landscapeViewportHeight="1280" />
+		<deviceSpecification model="iPhone 5 or 5s" width="320" height="568" devicePixelRatio="2" portraitViewportWidth="1280" portraitViewportHeight="2114" landscapeViewportWidth="2272" landscapeViewportHeight="1280" />
+		<deviceSpecification model="iPhone 6" width="375" height="667" devicePixelRatio="2" portraitViewportWidth="1500" portraitViewportHeight="2510" landscapeViewportWidth="2668" landscapeViewportHeight="1500" />
+		<deviceSpecification model="iPhone 6+" width="414" height="736" devicePixelRatio="3" portraitViewportWidth="1656" portraitViewportHeight="2785" landscapeViewportWidth="2944" landscapeViewportHeight="1656" />
+		<deviceSpecification model="iPhone 6+ Zoomed" width="375" height="667" devicePixelRatio="3" portraitViewportWidth="1500" portraitViewportHeight="2509" landscapeViewportWidth="2668" landscapeViewportHeight="1500" />
+		<deviceSpecification model="iPad Air or Retina" width="768" height="1024" devicePixelRatio="2" portraitViewportWidth="3072" portraitViewportHeight="3938" landscapeViewportWidth="4096" landscapeViewportHeight="2914" />
+		<deviceSpecification model="iPad 2" width="768" height="1024" devicePixelRatio="1" portraitViewportWidth="3072" portraitViewportHeight="3936" landscapeViewportWidth="4096" landscapeViewportHeight="2912" />
+	</deviceScreenSpecifications>
+</root>

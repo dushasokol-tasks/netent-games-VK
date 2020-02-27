@@ -1,0 +1,215 @@
+{
+  "definitions": {
+    "operatingSystems": {
+      "iOS": {
+        "name": "iOS",
+        "preferredBrowser": "Safari",
+        "matchPattern": "\\((?:iPhone|iPad);.+OS\\s\\d+_\\d+(?:_\\d+)?\\slike Mac OS X\\)",
+        "version": {
+          "matchPattern": "OS (\\d+_\\d+(?:_\\d+)?) like Mac OS X",
+          "separator": "_"
+        }
+      },
+      "android": {
+        "name": "Android",
+        "preferredBrowser": "Chrome",
+        "matchPattern": "\\((?:Linux;\\s(?:U;\\s)?)?Android\\s*(\\d+)\\.?(\\d?)\\.?(\\d?)?;",
+        "version": {
+          "matchPattern": "Android (\\d+)\\.?(\\d?)"
+        }
+      },
+      "osX": {
+        "name": "OS X",
+        "preferredBrowser": "Safari",
+        "matchPattern": "\\(Macintosh;.+Mac OS X \\d+[_.]\\d+(?:[_.]\\d+)?",
+        "version": {
+          "matchPattern": "\\(Macintosh;.+Mac OS X (\\d+[_.]\\d+(?:[_.]\\d+)?)",
+          "separator": "_"
+        }
+      },
+      "windows": {
+        "name": "Windows",
+        "preferredBrowser": "Chrome",
+        "matchPattern": "Windows NT \\d+\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Windows NT (\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "windowsPhone8": {
+        "name": "Windows Phone 8",
+        "preferredBrowser": "Internet Explorer",
+        "matchPattern": "Windows Phone 8\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Windows Phone (8\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "windowsPhone10": {
+        "name": "Windows Phone 10",
+        "preferredBrowser": "Edge",
+        "matchPattern": "Windows Phone 10\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Windows Phone (10\\.\\d+(?:\\.\\d+)?)"
+        }
+      }
+    },
+    "browsers": {
+      "safari": {
+        "name": "Safari",
+        "matchPattern": "Version\\/.+Safari\/\\d+\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Version\/(\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "safariWebApp": {
+        "name": "Safari",
+        "matchPattern": "\\((?:iPhone|iPad);.+like Mac OS X\\).+Mobile\\/[\\w\\d]+$",
+        "version": {
+          "matchPattern": "\\((?:iPhone|iPad);.+OS (\\d+_\\d+(?:[_.]\\d+)?) like Mac OS X\\)",
+          "separator": "_"
+        }
+      },
+      "chrome": {
+        "name": "Chrome",
+        "matchPattern": "\\sChrome\\/\\d+(?:\\.\\d+)*?(?:\\sMobile)?\\sSafari\\/(?:\\d+(?:\\.\\d+)*)$",
+        "version": {
+          "matchPattern": "Chrome\\/(\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "samsungBrowser": {
+        "name": "Samsung Browser",
+        "matchPattern": "SamsungBrowser\/\\d+\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "SamsungBrowser\/(\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "firefox": {
+        "name": "Firefox",
+        "matchPattern": "Firefox\\/\\d+\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Firefox\\/(\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "IE11": {
+        "name": "IE11",
+        "matchPattern": "Windows.+Trident\\/7\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Trident\\/(7\\.\\d+(?:\\.\\d+)?)"
+        }
+      },
+      "edge": {
+        "name": "edge",
+        "matchPattern": "Edge\\/\\d+\\.\\d+(?:\\.\\d+)?",
+        "version": {
+          "matchPattern": "Edge\\/(\\d+\\.\\d+(?:\\.\\d+)?)"
+        }
+      }
+    }
+  },
+  "ruleSets": {
+    "white": {
+      "iOS": {
+        "version": {
+          "min": "9.0"
+        },
+        "browsers": {
+          "safari": {
+            "version": {
+              "min": "9.0"
+            }
+          },
+          "safariWebApp": {
+            "version": {
+              "min": "9.0"
+            }
+          }
+        }
+      },
+      "android": {
+        "version": {
+          "min": "4.1"
+        },
+        "browsers": {
+          "chrome": {
+            "version": {
+              "min": "44.0"
+            }
+          },
+          "samsungBrowser": {
+            "version": {
+              "min": "2.1"
+            }
+          }
+        }
+      },
+      "osX": {
+        "version": {
+          "min": "10.9"
+        },
+        "browsers": {
+          "safari": {
+            "version": {
+              "min": "7.0"
+            }
+          },
+          "chrome": {
+            "version": {
+              "min": "44.0"
+            }
+          }
+        }
+      },
+      "windows": {
+        "version": {
+          "min": "6.1"
+        },
+        "browsers": {
+          "chrome": {
+            "version": {
+              "min": "44.0"
+            }
+          },
+          "firefox": {
+            "version": {
+              "min": "45.0"
+            }
+          },
+          "IE11": {
+            "version": {
+              "min": "7.0"
+            }
+          },
+          "edge": {
+            "version": {
+              "min": "12.0"
+            }
+          }
+        }
+      },
+      "windowsPhone8": {
+        "version": {
+          "min": "8.1"
+        },
+        "browsers": {
+          "IE11": {
+            "version": {
+              "min": "7.0"
+            }
+          }
+        }
+      },
+      "windowsPhone10": {
+        "version": {
+          "min": "10.0"
+        },
+        "browsers": {
+          "edge": {
+            "version": {
+              "min": "12.0"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/webstat"
+AuthUserFile /var/www/birjauser/data/etc/28577620.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

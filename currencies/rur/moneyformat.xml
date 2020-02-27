@@ -1,0 +1,11 @@
+<moneyformats>
+   <moneyformat>
+      <dividers thousands="," decimal="."/>
+      <strings>
+         <curchar after="false"></curchar>
+         <centchar usecent="false" after="false">k</centchar>
+      </strings>
+      <iso>RUR</iso>
+      <decimals>2</decimals>
+   </moneyformat>
+</moneyformats>
